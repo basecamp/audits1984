@@ -6,7 +6,7 @@
   <ul class="mb-6">
     <% session.audits.except(&:new_record?).each do |audit| %>
       <li> <%= audit.status.humanize %>
-        by <%= audit.auditor == audits1984::Current.auditor ? "You" : audit.auditor.name %>
+        by <%= audit.auditor == Audits1984::Current.auditor ? "You" : audit.auditor.name %>
         on <%= format_date_and_time(audit.created_at) %>
       </li>
     <% end %>
