@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Audits1984</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <meta charset="utf-8">
+  <title><%= @title || "audits1984 audit tool" %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
-  <%= stylesheet_link_tag    "audits1984/application", media: "all" %>
+  <%= csrf_meta_tags %>
+
+  <%= javascript_include_tag "audits1984/application", data: { turbo_track: :reload } %>
+  <%= stylesheet_link_tag "audits1984/application", media: :all, data: { turbo_track: :reload } %>
 </head>
+
 <body>
 
-<%= yield %>
-
+<section class="section">
+  <div class="container">
+    <%= render "layouts/audits1984/flash" %>
+    <%= yield %>
+  </div>
+</section>
 </body>
 </html>

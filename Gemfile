@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'console1984', git: "https://github.com/basecamp/console1984.git", branch: "record-in-database"
+gem 'console1984', path: "/Users/jorge/projects/console1984"
 
 group :development do
   gem 'sqlite3'

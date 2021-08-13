@@ -1,6 +1,11 @@
 require "audits1984/version"
 require "audits1984/engine"
 
+require "zeitwerk"
+loader = Zeitwerk::Loader.for_gem
+loader.setup
+
 module Audits1984
-  # Your code goes here...
+  mattr_accessor :auditor_class, default: "::User"
+  mattr_accessor :base_controller_class, default: "::ApplicationController"
 end
