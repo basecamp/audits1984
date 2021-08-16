@@ -23,7 +23,7 @@ module Audits1984
       sessions
     end
 
-    def before(session)
+    def pending_session_after(session)
       all.pending.where("console1984_sessions.id < ?", session.id).first
     end
   end

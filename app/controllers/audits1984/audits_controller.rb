@@ -31,7 +31,7 @@ module Audits1984
       end
 
       def redirect_to_next_session
-        next_path = if next_session = @filtered_sessions.before(@session)
+        next_path = if next_session = @filtered_sessions.pending_session_after(@session)
           next_session
         else
           sessions_path
