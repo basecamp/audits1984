@@ -12,7 +12,7 @@ module Audits1984
 
     initializer "audits1984.session" do
       ActiveSupport.on_load(:console_1984_session) do
-        include Audits1984::Session::Auditable
+        include Audits1984::Session::Auditable, Audits1984::Session::Iterable
       end
     end
 
