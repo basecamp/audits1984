@@ -88,6 +88,7 @@ PATH
   remote: .
   specs:
     audits1984 (0.1.0)
+      rinku
       rouge
       sassc-rails
       turbo-rails
@@ -154,6 +155,7 @@ GEM
     rake (13.0.6)
     regexp_parser (2.1.1)
     rexml (3.2.5)
+    rinku (2.0.6)
     rouge (3.26.0)
     rubocop (1.18.4)
       parallel (~> 1.10)

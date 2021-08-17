@@ -1,4 +1,4 @@
-<h2 class="title"><%= session.reason %> <%= sensitive_session_decoration(session) %></h2>
+<h2 class="title"><%= auto_link(session.reason) %> <%= sensitive_session_decoration(session) %></h2>
 <h3 class="subtitle">by <%= session.user.username %>
   <br> <%= format_date_and_time(session.created_at) %></h3>
 
