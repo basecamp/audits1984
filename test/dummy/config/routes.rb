@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Audits1984::Engine => "/audits1984"
+  mount Audits1984::Engine => "/"
 end

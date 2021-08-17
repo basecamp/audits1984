@@ -1,0 +1,2 @@
+class Auditor < ApplicationRecord
+end

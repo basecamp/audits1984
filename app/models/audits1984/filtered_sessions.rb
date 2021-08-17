@@ -24,7 +24,7 @@ module Audits1984
     end
 
     def pending_session_after(session)
-      all.pending.where("console1984_sessions.id < ?", session.id).first
+      all.pending.where("console1984_sessions.created_at < ? OR console1984_sessions.id < ?", session.created_at, session.id).first
     end
   end
 end

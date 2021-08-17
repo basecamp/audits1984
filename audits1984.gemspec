@@ -21,9 +21,13 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'rouge'
   spec.add_dependency 'turbo-rails'
+  spec.add_dependency 'sassc-rails'
 
   spec.add_development_dependency 'rubocop', '>= 1.18.4'
   spec.add_development_dependency 'rubocop-performance'
   spec.add_development_dependency 'rubocop-packaging'
   spec.add_development_dependency 'rubocop-rails'
+  spec.add_development_dependency 'capybara'
+  spec.add_development_dependency 'selenium-webdriver'
+  spec.add_development_dependency 'puma'
 end

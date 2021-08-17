@@ -6,7 +6,7 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <strong><%= session.reason %></strong>
+          <strong class="session__reason"><%= session.reason %></strong>
           <%= sensitive_session_decoration(session) %>
           <br>
           by <%= session.user.username %>
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="media-right">
+    <div class="session__status media-right">
       <% if session.audits.any? %>
         <%= session.audits.pluck(:status).collect(&:humanize).join(", ") %>
       <% else %>

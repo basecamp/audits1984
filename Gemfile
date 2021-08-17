@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # Specify your gem's dependencies in audits1984.gemspec.
 gemspec
 
+gem 'sassc-rails'
 gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'console1984', path: "/Users/jorge/projects/console1984"
 
