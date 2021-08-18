@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_16_131722) do
-
+ActiveRecord::Schema.define(version: 2021_08_17_093250) do
   create_table "auditors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -65,4 +64,8 @@ ActiveRecord::Schema.define(version: 2021_08_16_131722) do
     t.index ["username"], name: "index_console1984_users_on_username"
   end
 
+  create_table "people", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+  end
 end

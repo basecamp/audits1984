@@ -1,4 +1,5 @@
 require "rouge"
+require "rails_rinku"
 
 module Audits1984
   module ApplicationHelper

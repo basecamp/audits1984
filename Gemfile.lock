@@ -88,16 +88,11 @@ PATH
   remote: .
   specs:
     audits1984 (0.1.0)
+      console1984 (~> 0.1.1)
       rinku
       rouge
       sassc-rails
       turbo-rails
-
-PATH
-  remote: /Users/jorge/projects/console1984
-  specs:
-    console1984 (0.1.0)
-      colorize
 
 GEM
   remote: https://rubygems.org/
@@ -117,6 +112,8 @@ GEM
     childprocess (3.0.0)
     colorize (0.8.1)
     concurrent-ruby (1.1.9)
+    console1984 (0.1.1)
+      colorize
     crass (1.0.6)
     erubi (1.10.0)
     ffi (1.15.3)
@@ -135,6 +132,8 @@ GEM
     minitest (5.14.4)
     nio4r (2.5.8)
     nokogiri (1.12.2-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.12.2-x86_64-linux)
       racc (~> 1.4)
     parallel (1.20.1)
     parser (3.0.2.0)
@@ -168,6 +167,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.9.0)
       parser (>= 3.0.1.1)
+    rubocop-minitest (0.15.0)
+      rubocop (>= 0.90, < 2.0)
     rubocop-packaging (0.5.1)
       rubocop (>= 0.89, < 2.0)
     rubocop-performance (1.11.4)
@@ -214,14 +215,15 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   audits1984!
   capybara
-  console1984!
   puma
   rails!
   rubocop (>= 1.18.4)
+  rubocop-minitest
   rubocop-packaging
   rubocop-performance
   rubocop-rails
