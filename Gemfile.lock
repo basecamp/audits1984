@@ -88,7 +88,7 @@ PATH
   remote: .
   specs:
     audits1984 (0.1.0)
-      console1984 (~> 0.1.1)
+      console1984
       rinku
       rouge
       sassc-rails
@@ -112,7 +112,7 @@ GEM
     childprocess (3.0.0)
     colorize (0.8.1)
     concurrent-ruby (1.1.9)
-    console1984 (0.1.1)
+    console1984 (0.1.4)
       colorize
     crass (1.0.6)
     erubi (1.10.0)

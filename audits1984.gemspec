@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'turbo-rails'
   spec.add_dependency 'sassc-rails'
   spec.add_dependency 'rinku'
-  spec.add_dependency 'console1984', '~> 0.1.1'
+  spec.add_dependency 'console1984'
 
   spec.add_development_dependency 'rubocop', '>= 1.18.4'
   spec.add_development_dependency 'rubocop-performance'
