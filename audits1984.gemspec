@@ -6,13 +6,13 @@ Gem::Specification.new do |spec|
   spec.authors     = ["Jorge Manrubia"]
   spec.email       = ["jorge.manrubia@gmail.com"]
   spec.homepage    = "https://github.com/basecamp/audits1984"
-  spec.summary     = "Audits for Rails console sessions"
-  spec.description = "Auditing companion for console 1984"
+  spec.summary     = "A simple auditing tool for console1984"
+  spec.description = "Rails engine that implements a simple auditing tool for console1984 sessions"
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/basecamp/audits1984"
