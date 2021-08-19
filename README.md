@@ -4,6 +4,8 @@
 
 A simple auditing tool for [`console1984`](https://github.com/basecamp/console1984).
 
+
+
 ## Installation
 
 Add it to your `Gemfile`:
@@ -36,6 +38,20 @@ def find_current_auditor
   Current.user if Current.user&.staff?
 end
 ```
+
+## Usage
+
+The main screen lists the registered console sessions. It includes a form to filter sessions by date, and also to only show that contains sensitive accesses.
+
+![Main screen listing the registered console sessions with a filter form](docs/images/main-screen.png)
+
+You can click on a session to see its commands and choose whether it was an appropiate console usage or not.
+
+![Audit session screen](docs/images/audit-session-screen.png)
+
+After making a decision on the session, you will be redirected to the next pending session, based on the filter configured in the main screen.
+
+That is. I said it was simple.
 
 ## Configuration
 
