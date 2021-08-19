@@ -27,7 +27,7 @@ mount Audits1984::Engine => "/console"
 
 ### Authenticate auditors
 
-By default, `audits1984` will inherit from the host application's `ApplicationController`. To authenticate auditors, you need to implement a method `#find_current_auditor` in your `ApplicationController`. This method must return a record representing the auditing user. It can be any model but it has to respond to `#name`.
+By default, the library controllers will inherit from the host application's `ApplicationController`. To authenticate auditors, you need to implement a method `#find_current_auditor` in your `ApplicationController`. This method must return a record representing the auditing user. It can be any model but it has to respond to `#name`.
 
 For example, Imagine all the staff in your company can audit console sessions:
 
