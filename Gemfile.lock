@@ -112,7 +112,7 @@ GEM
     childprocess (3.0.0)
     colorize (0.8.1)
     concurrent-ruby (1.1.9)
-    console1984 (0.1.4)
+    console1984 (0.1.6)
       colorize
     crass (1.0.6)
     erubi (1.10.0)
@@ -130,6 +130,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.0)
     minitest (5.14.4)
+    mysql2 (0.5.3)
     nio4r (2.5.8)
     nokogiri (1.12.2-x86_64-darwin)
       racc (~> 1.4)
@@ -138,6 +139,7 @@ GEM
     parallel (1.20.1)
     parser (3.0.2.0)
       ast (~> 2.4.1)
+    pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.4.0)
       nio4r (~> 2.0)
@@ -220,6 +222,8 @@ PLATFORMS
 DEPENDENCIES
   audits1984!
   capybara
+  mysql2
+  pg
   puma
   rails!
   rubocop (>= 1.18.4)
