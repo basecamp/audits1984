@@ -8,6 +8,6 @@ module Audits1984::Session::Auditable
     scope :reviewed, -> { joins(:audits).distinct }
     scope :approved, -> { reviewed.where("audits.status": :approved) }
     scope :flagged, -> { reviewed.where("audits.status": :flagged) }
-    scope :pending, -> { where.not(id: reviewed) }
+    scope :pending, -> { where.not(id: reviewed.distinct(false)) }
   end
 end
