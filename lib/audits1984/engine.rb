@@ -1,4 +1,5 @@
 require "console1984"
+require 'rinku'
 
 module Audits1984
   class Engine < ::Rails::Engine
