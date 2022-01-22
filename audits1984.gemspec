@@ -21,7 +21,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'rouge'
   spec.add_dependency 'turbo-rails'
-  spec.add_dependency 'sassc-rails'
   spec.add_dependency 'rinku'
   spec.add_dependency 'console1984'
 
