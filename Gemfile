@@ -5,7 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem 'sassc-rails'
-gem 'rails', github: 'rails/rails', branch: 'main'
 
 group :development do
   gem 'sqlite3'

@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description = "Rails engine that implements a simple auditing tool for console1984 sessions"
   spec.license     = "MIT"
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
+  # Prevent pushing this gem to RubyGems.org. To alverlow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '>= 1.18.4'
   spec.add_development_dependency 'rubocop-performance'
   spec.add_development_dependency 'rubocop-minitest'
+  spec.add_development_dependency 'rubocop-md'
   spec.add_development_dependency 'rubocop-packaging'
   spec.add_development_dependency 'rubocop-rails'
   spec.add_development_dependency 'capybara'
