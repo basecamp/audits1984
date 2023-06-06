@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    audits1984 (0.1.2)
+    audits1984 (0.1.3)
       console1984
       rinku
       rouge
