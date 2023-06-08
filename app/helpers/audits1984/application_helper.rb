@@ -2,6 +2,14 @@ require "rouge"
 
 module Audits1984
   module ApplicationHelper
+    def get_auditor_name(auditor)
+      if auditor == Audits1984::Current.auditor
+        "You"
+      else
+        auditor.public_send(Audits1984.auditor_name_attribute)
+      end
+    end
+
     def format_date(date)
       # <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
       date.strftime("%Y-%m-%d")

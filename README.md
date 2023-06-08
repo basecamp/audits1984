@@ -60,5 +60,5 @@ These config options are namespaced in `config.audits1984`:
 | Name                  | Description                                                  |
 | --------------------- | ------------------------------------------------------------ |
 | auditor_class         | The name of the auditor class. By default it's `::User.`     |
+| auditor_name_attribute | The attribute on the auditor class that returns the auditor's name. By default it's `:name`. |
 | base_controller_class | The host application base class that will be the parent of `audit1984` controllers. By default it's `::ApplicationController`. |
-
