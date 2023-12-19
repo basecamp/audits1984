@@ -8,7 +8,7 @@
 
   <%= csrf_meta_tags %>
 
-  <%= javascript_include_tag "audits1984/application", data: { turbo_track: :reload } %>
+  <%= javascript_include_tag "audits1984/application", nonce: true, data: { turbo_track: :reload } %>
   <%= stylesheet_link_tag "audits1984/application", media: :all, data: { turbo_track: :reload } %>
 </head>
 
