@@ -23,16 +23,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'turbo-rails'
   spec.add_dependency 'rinku'
   spec.add_dependency 'console1984'
-
-  spec.add_development_dependency 'rubocop', '>= 1.18.4'
-  spec.add_development_dependency 'rubocop-performance'
-  spec.add_development_dependency 'rubocop-minitest'
-  spec.add_development_dependency 'rubocop-md'
-  spec.add_development_dependency 'rubocop-packaging'
-  spec.add_development_dependency 'rubocop-rails'
-  spec.add_development_dependency 'capybara'
-  spec.add_development_dependency 'selenium-webdriver'
-  spec.add_development_dependency 'puma'
-  spec.add_development_dependency 'pg'
-  spec.add_development_dependency 'mysql2'
 end

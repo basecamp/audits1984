@@ -1,0 +1,3 @@
+sensitive_access:
+  session: sensitive_printing
+  justification: "Hi"

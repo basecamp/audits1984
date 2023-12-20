@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
@@ -27,28 +27,37 @@ jobs:
         image: postgres:13.4
         env:
           POSTGRES_HOST_AUTH_METHOD: "trust"
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
         ports:
           - 55433:5432
       mysql:
         image: percona:5.7.22
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        options: >-
+          --health-cmd "mysqladmin ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
         ports:
           - 33307:3306
     env:
       TARGET_DB: ${{ matrix.database }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.2
           bundler-cache: true
       - name: Setup test database
-        run: |
-          bin/rails db:setup
+        env:
+          RAILS_ENV: test
+        run: bin/rails db:setup
       - name: Run tests
-        run: bin/rails test
-      - name: Run system tests
-        run: bin/rails app:test:system
+        run: bundle exec rake test

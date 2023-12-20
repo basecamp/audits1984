@@ -1,0 +1,7 @@
+arithmethic:
+  reason: "Arithmetic operations"
+  user: user
+
+sensitive_printing:
+  reason: "Sensitive printing"
+  user: user
