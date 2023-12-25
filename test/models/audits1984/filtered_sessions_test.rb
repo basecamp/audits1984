@@ -2,7 +2,7 @@ require "test_helper"
 
 class Audits1984::FilteredSessionsTest < ActiveSupport::TestCase
   test "return all sessions ordered by creation date" do
-    assert Console1984::Session.any?
+    assert_predicate Console1984::Session, :any?
     assert_equal Console1984::Session.order(created_at: :desc, id: :desc), Audits1984::FilteredSessions.new.all
   end
 

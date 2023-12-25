@@ -1,10 +1,8 @@
-![example workflow](https://github.com/basecamp/audits1984/actions/workflows/build.yml/badge.svg)
+[![Build Status](https://github.com/basecamp/audits1984/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/basecamp/audits1984/actions?query=branch%3Amaster)
 
 # Audits1984
 
 A simple auditing tool for [`console1984`](https://github.com/basecamp/console1984).
-
-
 
 ## Installation
 
@@ -16,7 +14,7 @@ gem 'audits1984'
 
 Create tables to store audits in the database:
 
-```ruby
+```sh
 rails audits1984:install:migrations
 rails db:migrate
 ```
