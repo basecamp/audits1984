@@ -2,6 +2,7 @@ require "rouge"
 
 module Audits1984
   module ApplicationHelper
+    include Audits1984::Engine.routes.url_helpers
     def auditor_name_for(auditor)
       if auditor == Audits1984::Current.auditor
         "You"
