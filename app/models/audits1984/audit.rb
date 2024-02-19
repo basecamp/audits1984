@@ -3,7 +3,7 @@ module Audits1984
     belongs_to :session, class_name: "Console1984::Session", touch: true
     belongs_to :auditor, class_name: Audits1984.auditor_class
 
-    enum status: %i[ pending approved flagged ]
+    enum :status, %i[ pending approved flagged ]
 
     encrypts :notes
   end
