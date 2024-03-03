@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    audits1984 (0.1.5)
+    audits1984 (0.1.6)
       console1984
       rinku
       rouge
@@ -226,7 +226,7 @@ GEM
     sqlite3 (1.6.3-x86_64-linux)
     thor (1.2.2)
     timeout (0.4.1)
-    turbo-rails (1.5.0)
+    turbo-rails (2.0.4)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
