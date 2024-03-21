@@ -9,12 +9,7 @@ gem 'pg'
 gem 'mysql2'
 
 group :development do
-  gem 'rubocop', '>= 1.18.4'
-  gem 'rubocop-performance'
-  gem 'rubocop-minitest'
-  gem 'rubocop-md'
-  gem 'rubocop-packaging'
-  gem 'rubocop-rails'
+  gem 'rubocop-rails-omakase', require: false
 end
 
 group :test do

@@ -3,8 +3,8 @@ require_relative "lib/audits1984/version"
 Gem::Specification.new do |spec|
   spec.name        = "audits1984"
   spec.version     = Audits1984::VERSION
-  spec.authors     = ["Jorge Manrubia"]
-  spec.email       = ["jorge.manrubia@gmail.com"]
+  spec.authors     = [ "Jorge Manrubia" ]
+  spec.email       = [ "jorge.manrubia@gmail.com" ]
   spec.homepage    = "https://github.com/basecamp/audits1984"
   spec.summary     = "A simple auditing tool for console1984"
   spec.description = "Rails engine that implements a simple auditing tool for console1984 sessions"
@@ -19,8 +19,8 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency 'rouge'
-  spec.add_dependency 'turbo-rails'
-  spec.add_dependency 'rinku'
-  spec.add_dependency 'console1984'
+  spec.add_dependency "rouge"
+  spec.add_dependency "turbo-rails"
+  spec.add_dependency "rinku"
+  spec.add_dependency "console1984"
 end

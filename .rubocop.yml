@@ -1,8 +1,12 @@
-inherit_from: https://raw.githubusercontent.com/rails/rails/master/.rubocop.yml
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
 Performance:
   Exclude:
     - 'test/**/*'
+
+AllCops:
+  Exclude:
+    - 'test/dummy/db/*schema.rb'
 
 Style/FrozenStringLiteralComment:
   Enabled: false

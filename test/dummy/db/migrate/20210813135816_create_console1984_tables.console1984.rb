@@ -14,7 +14,7 @@ class CreateConsole1984Tables < ActiveRecord::Migration[7.0]
       t.string :username, null: false
       t.timestamps
 
-      t.index [:username]
+      t.index [ :username ]
     end
 
     create_table :console1984_commands do |t|
