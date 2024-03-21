@@ -21,8 +21,8 @@ class Audits1984::FilteredSessionsTest < ActiveSupport::TestCase
     to = session_to.created_at
 
     assert_filtered_sessions included: [ session_from, session_to ], from: from, to: to
-    assert_filtered_sessions included: [ session_to ], excluded: [session_from ], from: to
-    assert_filtered_sessions included: [ session_from ], excluded: [session_to ], from: from, to: from
+    assert_filtered_sessions included: [ session_to ], excluded: [ session_from ], from: to
+    assert_filtered_sessions included: [ session_from ], excluded: [ session_to ], from: from, to: from
   end
 
   test "pending_session_after returns the next session considering those are sorted with newest first" do
