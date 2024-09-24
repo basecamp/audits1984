@@ -24,6 +24,13 @@
         </div>
       </div>
 
+      <div class="field">
+        <div class="control">
+          <%= form.label :sensitive_only, "Pending review only", class: "checkbox" %>
+          <%= form.check_box :pending_only %>
+        </div>
+      </div>
+
       <div class="field is-grouped">
         <div class="control">
           <%= form.submit "Filter", class: "button is-link" %>
