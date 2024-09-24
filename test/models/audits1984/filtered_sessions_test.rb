@@ -32,11 +32,23 @@ class Audits1984::FilteredSessionsTest < ActiveSupport::TestCase
     assert_equal second, filtered_sessions.pending_session_after(first)
   end
 
+  test "filter pending sessiosn" do
+    audited_session = console1984_sessions(:sensitive_printing)
+    auditor = ::Auditor.create!(name: "Jorge")
+    audited_session.audits.create!(status: "approved", auditor_id: auditor.id)
+    pending_session = console1984_sessions(:arithmetic)
+
+    assert_filtered_sessions \
+      included: pending_session,
+      excluded: audited_session,
+      pending: true
+  end
+
   private
-    def assert_filtered_sessions(included: [], excluded: [], sensitive: false, from: nil, to: nil)
+    def assert_filtered_sessions(included: [], excluded: [], sensitive: false, from: nil, to: nil, pending: false)
       assert included.present? || excluded.present?, "Not really testing anything?"
 
-      filtered_sessions = Audits1984::FilteredSessions.new(sensitive_only: sensitive, from_date: from, to_date: to)
+      filtered_sessions = Audits1984::FilteredSessions.new(sensitive_only: sensitive, from_date: from, to_date: to, pending_only: pending)
 
       Array(included).each do |expected_session|
         assert_includes filtered_sessions.all, expected_session
