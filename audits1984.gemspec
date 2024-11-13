@@ -20,8 +20,8 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "rouge"
-  spec.add_dependency "turbo-rails"
   spec.add_dependency "importmap-rails", ">= 1.2.1"
+  spec.add_dependency "turbo-rails"
   spec.add_dependency "rinku"
   spec.add_dependency "console1984"
 

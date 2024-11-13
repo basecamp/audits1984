@@ -7,6 +7,13 @@ module Audits1984
   class Engine < ::Rails::Engine
     isolate_namespace Audits1984
 
+    initializer "audits1984.middleware" do |app|
+      if app.config.api_only
+        app.middleware.use ActionDispatch::Flash
+        app.middleware.use ::Rack::MethodOverride
+      end
+    end
+
     config.audits1984 = ActiveSupport::OrderedOptions.new
 
     initializer "audits1984.config" do
