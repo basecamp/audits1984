@@ -25,6 +25,21 @@ Mount the engine in your `routes.rb`:
 mount Audits1984::Engine => "/console"
 ```
 
+### API-only apps or apps using `vite_rails` and other asset pipelines outside Rails
+
+If you want to use this gem with an [API-only Rails app](https://guides.rubyonrails.org/api_app.html) or an app that's using `vite_ruby`/`vite_rails`, or some other custom asset pipeline different from Sprockets and Propshaft, you need just one more thing: configure an asset pipeline so you can serve the JavaScript and CSS included in this gem. We recommend to use [`Propshaft`](https://github.com/rails/propshaft). You simply need to add this line to your application's Gemfile:
+
+```ruby
+gem "propshaft"
+```
+
+Then execute
+```bash
+$ bundle install
+```
+
+And you should be ready to go.
+
 ### Authenticate auditors
 
 By default, the library controllers will inherit from the host application's `ApplicationController`. To authenticate auditors, you need to implement a method `#find_current_auditor` in your `ApplicationController`. This method must return a record representing the auditing user. It can be any model but it has to respond to `#name`.

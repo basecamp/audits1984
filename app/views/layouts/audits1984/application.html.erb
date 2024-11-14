@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <title><%= @title || "Audits1984" %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag "audits1984/bulma.min" %>
 
   <%= csrf_meta_tags %>
 
-  <%= javascript_include_tag "audits1984/application", nonce: true, data: { turbo_track: :reload } %>
+  <%= stylesheet_link_tag "audits1984/bulma.min" %>
+  <%= javascript_importmap_tags "application", importmap: Audits1984.importmap  %>
   <%= stylesheet_link_tag "audits1984/application", media: :all, data: { turbo_track: :reload } %>
 </head>
 

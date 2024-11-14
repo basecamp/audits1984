@@ -1,9 +1,18 @@
 require "console1984"
-require 'rinku'
+require "importmap-rails"
+require "turbo-rails"
+require "rinku"
 
 module Audits1984
   class Engine < ::Rails::Engine
     isolate_namespace Audits1984
+
+    initializer "audits1984.middleware" do |app|
+      if app.config.api_only
+        app.middleware.use ActionDispatch::Flash
+        app.middleware.use ::Rack::MethodOverride
+      end
+    end
 
     config.audits1984 = ActiveSupport::OrderedOptions.new
 
@@ -19,8 +28,19 @@ module Audits1984
       end
     end
 
-    initializer "audits1984.assets.precompile" do |app|
+    initializer "audits1984.assets" do |app|
+      app.config.assets.paths << root.join("app/assets/stylesheets")
+      app.config.assets.paths << root.join("app/javascript")
       app.config.assets.precompile << "audits1984_manifest.js"
+    end
+
+    initializer "audits1984.importmap", after: "importmap" do |app|
+      Audits1984.importmap.draw(root.join("config/importmap.rb"))
+      Audits1984.importmap.cache_sweeper(watches: root.join("app/javascript"))
+
+      ActiveSupport.on_load(:action_controller_base) do
+        before_action { Audits1984.importmap.cache_sweeper.execute_if_updated }
+      end
     end
   end
 end

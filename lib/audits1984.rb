@@ -9,4 +9,5 @@ module Audits1984
   mattr_accessor :auditor_class, default: "::User"
   mattr_accessor :auditor_name_attribute, default: :name
   mattr_accessor :base_controller_class, default: "::ApplicationController"
+  mattr_accessor :importmap, default: Importmap::Map.new
 end
