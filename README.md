@@ -64,7 +64,7 @@ You can click on a session to see its commands and choose whether it was an appr
 
 After making a decision on the session, you will be redirected to the next pending session, based on the filter configured in the main screen.
 
-That is. I said it was simple.
+That's it. I said it was simple.
 
 ## Configuration
 
