@@ -17,10 +17,15 @@
         </div>
       </div>
 
-      <div class="field">
+      <div class="field is-grouped">
         <div class="control">
           <%= form.label :sensitive_only, "Only with sensitive access", class: "checkbox" %>
           <%= form.check_box :sensitive_only %>
+        </div>
+      
+        <div class="control">
+          <%= form.label :sensitive_only, "Pending review only", class: "checkbox" %>
+          <%= form.check_box :pending_only %>
         </div>
       </div>
 
