@@ -18,7 +18,7 @@ module Audits1984
 
     def format_date_and_time(date)
       # <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-      date.strftime("%Y-%m-%d at %I:%m %P")
+      date.strftime("%Y-%m-%d at %I:%M %P")
     end
 
     def highlighted_code_from(commands)
