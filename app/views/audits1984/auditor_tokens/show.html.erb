@@ -1,0 +1,58 @@
+<h1 class="title">API Token</h1>
+
+<% if @new_token_plaintext %>
+  <article class="message is-success">
+    <div class="message-header">
+      <p>New Token Generated</p>
+    </div>
+    <div class="message-body">
+      <p><strong>Copy this token now. You will not be able to see it again.</strong></p>
+      <pre class="mt-3"><code id="token-value"><%= @new_token_plaintext %></code></pre>
+    </div>
+  </article>
+<% end %>
+
+<% if @auditor_token %>
+  <div class="box">
+    <h2 class="subtitle">Current Token</h2>
+    <p>
+      <strong>Expires:</strong>
+      <span title="<%= format_date_and_time(@auditor_token.expires_at) %>">
+        <%= relative_time_in_words(@auditor_token.expires_at) %>
+      </span>
+      <% if @auditor_token.expired? %>
+        <span class="tag is-danger">Expired</span>
+      <% end %>
+    </p>
+    <p class="mt-3">
+      <strong>Created:</strong>
+      <span title="<%= format_date_and_time(@auditor_token.created_at) %>">
+        <%= relative_time_in_words(@auditor_token.created_at) %>
+      </span>
+    </p>
+
+    <div class="buttons mt-4">
+      <%= button_to "Regenerate Token", auditor_token_path, method: :post, class: "button is-warning",
+            data: { turbo: false }, onclick: "return confirm('This will invalidate your existing token. Continue?')" %>
+      <%= button_to "Revoke Token", auditor_token_path, method: :delete, class: "button is-danger",
+            data: { turbo_confirm: "Are you sure you want to revoke this token?" } %>
+    </div>
+  </div>
+<% else %>
+  <div class="box">
+    <p>You don't have an API token yet.</p>
+    <%= button_to "Generate Token", auditor_token_path, method: :post, class: "button is-primary mt-3",
+            data: { turbo: false } %>
+  </div>
+<% end %>
+
+<div class="content mt-5">
+  <h2 class="subtitle">Usage</h2>
+  <p>Use your token in the <code>Authorization</code> header:</p>
+  <pre><code>Authorization: Bearer YOUR_TOKEN</code></pre>
+
+  <p class="mt-4">Example:</p>
+  <pre><code>curl -H "Authorization: Bearer YOUR_TOKEN" \
+     -H "Accept: application/json" \
+     <%= sessions_url %></code></pre>
+</div>

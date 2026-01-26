@@ -28,6 +28,13 @@ module Audits1984
       end
     end
 
+    config.to_prepare do
+      Audits1984.auditor_class.constantize.has_one :auditor_token,
+        class_name: "Audits1984::AuditorToken",
+        foreign_key: :auditor_id,
+        dependent: :delete
+    end
+
     initializer "audits1984.assets" do |app|
       app.config.assets.paths << root.join("app/assets/stylesheets")
       app.config.assets.paths << root.join("app/javascript")
