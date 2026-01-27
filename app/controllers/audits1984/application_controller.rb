@@ -17,8 +17,18 @@ module Audits1984
           raise NotImplementedError, "Base controller class '#{Audits1984.base_controller_class}' must implement \#find_current_auditor'"
         end
 
-        unless Current.auditor = find_current_auditor
+        unless Current.auditor = (find_current_auditor || auditor_from_bearer_token)
           head :forbidden
+        end
+      end
+
+      # Parse the Authorization header for a Bearer token and return the associated auditor.
+      # Returns nil if no valid token is present. This method is available for use by the
+      # application controller class to integrate bearer token authentication into its own auth
+      # flow if necessary.
+      def auditor_from_bearer_token
+        authenticate_with_http_token do |token, _options|
+          AuditorToken.find_by_token(token)&.auditor
         end
       end
   end
