@@ -1,5 +1,6 @@
 require "console1984"
 require "importmap-rails"
+require "jbuilder"
 require "turbo-rails"
 require "rinku"
 

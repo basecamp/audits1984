@@ -5,7 +5,7 @@ module Audits1984
     include FilteredSessionsScoped
 
     def index
-      @sessions = @filtered_sessions.all
+      @sessions = @filtered_sessions.all.includes(:user, :audits, :sensitive_accesses)
     end
 
     def show

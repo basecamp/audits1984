@@ -4,6 +4,20 @@ module Audits1984
       include mod unless self < mod
     end
 
+    rescue_from ActiveRecord::RecordNotFound do |exception|
+      respond_to do |format|
+        format.html { raise exception }
+        format.json { render json: { error: "Not found" }, status: :not_found }
+      end
+    end
+
+    rescue_from ActiveRecord::RecordInvalid do |exception|
+      respond_to do |format|
+        format.html { raise exception }
+        format.json { render json: { error: "Validation failed", messages: exception.record.errors.full_messages }, status: :unprocessable_entity }
+      end
+    end
+
     before_action :authenticate_auditor
 
     layout "audits1984/application"
