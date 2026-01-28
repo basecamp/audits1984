@@ -9,13 +9,13 @@ ActiveRecord::Migrator.migrations_paths = [ File.expand_path("../test/dummy/db/m
 
 require "rails/test_help"
 
-# Load fixtures from the engine
+# Load fixtures from console1984 engine (not local fixtures)
 if ActiveSupport::TestCase.respond_to?(:fixture_path=)
-  ActiveSupport::TestCase.fixture_path = File.expand_path("fixtures", __dir__)
-  ActionDispatch::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
-  ActiveSupport::TestCase.file_fixture_path = ActiveSupport::TestCase.fixture_path + "/files"
+  console1984_fixtures = Console1984::Engine.root.join("test", "fixtures")
 
-  ActiveSupport::TestCase.fixture_path = Console1984::Engine.root.join("test", "fixtures")
+  ActiveSupport::TestCase.fixture_path = console1984_fixtures
+  ActionDispatch::IntegrationTest.fixture_path = console1984_fixtures
+  ActiveSupport::TestCase.file_fixture_path = console1984_fixtures.join("files")
 
   ActiveSupport::TestCase.fixtures :all
 end
