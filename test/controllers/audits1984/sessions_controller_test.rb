@@ -1,6 +1,6 @@
 require "test_helper"
 
-class SessionsApiTest < ActionDispatch::IntegrationTest
+class Audits1984::SessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @auditor = Auditor.find_or_create_by!(name: "Jorge")
     @token_plaintext = Audits1984::AuditorToken.generate_for(@auditor)
@@ -49,7 +49,8 @@ class SessionsApiTest < ActionDispatch::IntegrationTest
 
   test "GET /sessions with sensitive_only filter returns only sensitive sessions" do
     # The sensitive_printing fixture has a sensitive_access
-    get "/sessions?sensitive_only=true",
+    get "/sessions",
+      params: { sensitive_only: true },
       headers: {
         "Accept" => "application/json",
         "Authorization" => "Bearer #{@token_plaintext}"
@@ -62,6 +63,31 @@ class SessionsApiTest < ActionDispatch::IntegrationTest
     json["sessions"].each do |session|
       assert session["sensitive"], "Expected session #{session['id']} to be sensitive"
     end
+  end
+
+  test "GET /sessions with pending filter returns only sessions with no audits" do
+    # Create an audit on one session so we have both pending and reviewed sessions
+    session_with_audit = Console1984::Session.first
+    Audits1984::Audit.create!(session: session_with_audit, auditor: @auditor, status: :approved)
+
+    get "/sessions",
+      params: { pending_only: true },
+      headers: {
+        "Accept" => "application/json",
+        "Authorization" => "Bearer #{@token_plaintext}"
+      }
+
+    assert_response :success
+    json = JSON.parse(response.body)
+
+    # All returned sessions should have no audits (pending)
+    json["sessions"].each do |session|
+      assert_empty session["audit_statuses"], "Expected session #{session['id']} to have no audits"
+    end
+
+    # The session with an audit should not be in the results
+    returned_ids = json["sessions"].map { |s| s["id"] }
+    assert_not_includes returned_ids, session_with_audit.id
   end
 
   test "GET /sessions without auth returns 403 forbidden" do

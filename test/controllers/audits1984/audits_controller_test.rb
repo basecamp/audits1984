@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AuditsApiTest < ActionDispatch::IntegrationTest
+class Audits1984::AuditsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @auditor = Auditor.find_or_create_by!(name: "Jorge")
     @token_plaintext = Audits1984::AuditorToken.generate_for(@auditor)

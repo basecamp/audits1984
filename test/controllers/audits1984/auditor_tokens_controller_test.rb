@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AuditorTokensTest < ActionDispatch::IntegrationTest
+class Audits1984::AuditorTokensControllerTest < ActionDispatch::IntegrationTest
   setup do
     @auditor = Auditor.find_or_create_by!(name: "Jorge")
   end

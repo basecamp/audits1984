@@ -9,7 +9,7 @@ module Audits1984
 
     private
       def filtered_sessions_param
-        params.require(:filtered_sessions).permit(:sensitive_only, :from_date, :to_date)
+        params.require(:filtered_sessions).permit(:sensitive_only, :pending_only, :from_date, :to_date)
       end
   end
 end

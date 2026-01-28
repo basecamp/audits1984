@@ -14,7 +14,7 @@ module Audits1984
       end
 
       def filter_params_from_query
-        params.permit(:sensitive_only, :from_date, :to_date).to_h
+        params.permit(:sensitive_only, :pending_only, :from_date, :to_date).to_h
       end
   end
 end
