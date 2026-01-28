@@ -34,19 +34,7 @@ end
 class ApiAuthenticationWithoutSessionTest < ActionDispatch::IntegrationTest
   setup do
     @auditor = Auditor.find_or_create_by!(name: "Jorge")
-
-    ApplicationController.class_eval do
-      alias_method :original_find_current_auditor, :find_current_auditor
-      def find_current_auditor
-        nil
-      end
-    end
-  end
-
-  teardown do
-    ApplicationController.class_eval do
-      alias_method :find_current_auditor, :original_find_current_auditor
-    end
+    ApplicationController.any_instance.stubs(:find_current_auditor).returns(nil)
   end
 
   test "valid bearer token authenticates HTML requests when no session auth" do

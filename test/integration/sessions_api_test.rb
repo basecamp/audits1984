@@ -65,20 +65,14 @@ class SessionsApiTest < ActionDispatch::IntegrationTest
   end
 
   test "GET /sessions without auth returns 403 forbidden" do
-    ApplicationController.class_eval do
-      alias_method :original_find_current_auditor_sessions, :find_current_auditor
-      def find_current_auditor
-        nil
-      end
-    end
+    ApplicationController.any_instance.stubs(:find_current_auditor).returns(nil)
 
     get "/sessions",
       headers: { "Accept" => "application/json" }
 
     assert_response :forbidden
+  end
 
-    ApplicationController.class_eval do
-      alias_method :find_current_auditor, :original_find_current_auditor_sessions
     end
   end
 end

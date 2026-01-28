@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "propshaft"
   spec.add_development_dependency "puma"
   spec.add_development_dependency "minitest"
+  spec.add_development_dependency "mocha"
   spec.add_development_dependency "capybara"
   spec.add_development_dependency "cuprite"
 end
