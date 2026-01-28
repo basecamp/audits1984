@@ -40,7 +40,7 @@ $ bundle install
 
 And you should be ready to go.
 
-### Authenticate auditors
+### Application authentication for auditors
 
 By default, the library controllers will inherit from the host application's `ApplicationController`. To authenticate auditors, you need to implement a method `#find_current_auditor` in your `ApplicationController`. This method must return a record representing the auditing user. It can be any model but it has to respond to `#name`.
 
@@ -50,6 +50,40 @@ For example, Imagine all the staff in your company can audit console sessions:
 def find_current_auditor
   Current.user if Current.user&.staff?
 end
+```
+
+### Bearer tokens for auditors
+
+Auditors can generate bearer tokens for API access via the token management UI at `/console/auditor_token`. By default, `Audits1984::ApplicationController` will respect a valid bearer token.
+
+For some applications that have more complex authentication requirements, the `auditor_from_bearer_token` method is available in your base controller class to integrate token authentication into your own auth flow.
+
+For example, to allow bearer token authentication before your normal auth:
+
+```ruby
+class Admin::AuditController < AdminController
+  private
+    # Extend the existing application authentication to support bearer token
+    def require_authentication
+      authenticate_by_audit_bearer_token || super
+    end
+
+    def authenticate_by_audit_bearer_token
+      if auditor = auditor_from_bearer_token
+        Current.user = auditor
+      end
+    end
+
+    def find_current_auditor
+      Current.user
+    end
+end
+```
+
+Then configure audits1984 to use this controller:
+
+```ruby
+config.audits1984.base_controller_class = "Admin::AuditController"
 ```
 
 ## Usage

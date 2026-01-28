@@ -1,5 +1,6 @@
 require "console1984"
 require "importmap-rails"
+require "jbuilder"
 require "turbo-rails"
 require "rinku"
 
@@ -26,6 +27,13 @@ module Audits1984
       ActiveSupport.on_load(:console_1984_session) do
         include Audits1984::Session::Auditable, Audits1984::Session::Iterable
       end
+    end
+
+    config.to_prepare do
+      Audits1984.auditor_class.constantize.has_one :auditor_token,
+        class_name: "Audits1984::AuditorToken",
+        foreign_key: :auditor_id,
+        dependent: :delete
     end
 
     initializer "audits1984.assets" do |app|

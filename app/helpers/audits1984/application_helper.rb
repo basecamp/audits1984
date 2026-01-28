@@ -21,6 +21,15 @@ module Audits1984
       date.strftime("%Y-%m-%d at %I:%M %P")
     end
 
+    def relative_time_in_words(time, options = {})
+      distance = distance_of_time_in_words(Time.current, time, options)
+      if time > Time.current
+        "in #{distance}"
+      else
+        "#{distance} ago"
+      end
+    end
+
     def highlighted_code_from(commands)
       highlight_code commands.collect(&:statements).collect(&:strip).filter(&:present?).join("\n")
     end

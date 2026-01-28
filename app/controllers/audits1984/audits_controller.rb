@@ -9,12 +9,18 @@ module Audits1984
 
     def create
       @audit = @session.audits.create!(audit_param.merge(auditor: Current.auditor))
-      redirect_to_next_session
+      respond_to do |format|
+        format.html { redirect_to_next_session }
+        format.json { render :show, status: :created }
+      end
     end
 
     def update
       @audit.update!(audit_param)
-      redirect_to_next_session
+      respond_to do |format|
+        format.html { redirect_to_next_session }
+        format.json { render :show, status: :ok }
+      end
     end
 
     private

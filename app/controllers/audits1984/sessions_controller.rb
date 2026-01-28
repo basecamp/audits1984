@@ -5,12 +5,17 @@ module Audits1984
     include FilteredSessionsScoped
 
     def index
-      @sessions = @filtered_sessions.all
+      @sessions = @filtered_sessions.all.includes(:user, :audits, :sensitive_accesses)
     end
 
     def show
-      @session = Console1984::Session.find(params[:id])
-      @audit = @session.audits.find_by(auditor: Current.auditor) || @session.audits.build(auditor: Current.auditor)
+      @session = Console1984::Session
+        .includes(:user, :sensitive_accesses, commands: :sensitive_access, audits: :auditor)
+        .find(params[:id])
+
+      if request.format.html?
+        @audit = @session.audits.find_by(auditor: Current.auditor) || @session.audits.build(auditor: Current.auditor)
+      end
     end
   end
 end

@@ -8,6 +8,7 @@ require "console1984"
 ActiveRecord::Migrator.migrations_paths = [ File.expand_path("../test/dummy/db/migrate", __dir__) ]
 
 require "rails/test_help"
+require "mocha/minitest"
 
 # Load fixtures from console1984 engine (not local fixtures)
 if ActiveSupport::TestCase.respond_to?(:fixture_path=)

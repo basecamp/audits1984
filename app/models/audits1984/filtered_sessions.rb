@@ -6,6 +6,7 @@ module Audits1984
     attribute :from_date, :date
     attribute :to_date, :date
     attribute :sensitive_only, :boolean
+    attribute :pending_only, :boolean
 
     def self.resume(attributes)
       new attributes&.with_indifferent_access&.slice(*attribute_names)
@@ -18,6 +19,7 @@ module Audits1984
     def all
       sessions = Console1984::Session.order(created_at: :desc, id: :desc)
       sessions = sessions.sensitive if sensitive_only
+      sessions = sessions.pending if pending_only
       sessions = sessions.where("console1984_sessions.created_at >= ?", from_date.beginning_of_day) if from_date.present?
       sessions = sessions.where("console1984_sessions.created_at <= ?", to_date.end_of_day) if to_date.present?
       sessions
