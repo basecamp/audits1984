@@ -73,6 +73,94 @@ class SessionsApiTest < ActionDispatch::IntegrationTest
     assert_response :forbidden
   end
 
+  test "GET /sessions/:id returns JSON session with command_batches and audits" do
+    session = Console1984::Session.first
+
+    get "/sessions/#{session.id}",
+      headers: {
+        "Accept" => "application/json",
+        "Authorization" => "Bearer #{@token_plaintext}"
+      }
+
+    assert_response :success
+    assert_equal "application/json", response.media_type
+
+    json = JSON.parse(response.body)
+    assert json.key?("session")
+
+    session_json = json["session"]
+    assert_equal session.id, session_json["id"]
+    assert session_json.key?("user")
+    assert session_json.key?("reason")
+    assert session_json.key?("created_at")
+    assert session_json.key?("sensitive")
+
+    # Verify command_batches structure (commands grouped by sensitive access)
+    assert session_json.key?("command_batches")
+    assert_kind_of Array, session_json["command_batches"]
+
+    if session_json["command_batches"].any?
+      batch = session_json["command_batches"].first
+      assert batch.key?("sensitive")
+      assert batch.key?("justification")
+      assert batch.key?("commands")
+      assert_kind_of Array, batch["commands"]
     end
+
+    # Verify audits structure
+    assert session_json.key?("audits")
+    assert_kind_of Array, session_json["audits"]
+  end
+
+  test "GET /sessions/:id includes audit details when audits exist" do
+    session = Console1984::Session.first
+    audit = Audits1984::Audit.create!(
+      session: session,
+      auditor: @auditor,
+      status: :approved,
+      notes: "Looks good"
+    )
+
+    get "/sessions/#{session.id}",
+      headers: {
+        "Accept" => "application/json",
+        "Authorization" => "Bearer #{@token_plaintext}"
+      }
+
+    assert_response :success
+    json = JSON.parse(response.body)
+
+    audits = json["session"]["audits"]
+    assert audits.any?, "Expected at least one audit"
+
+    audit_json = audits.find { |a| a["id"] == audit.id }
+    assert_not_nil audit_json
+    assert_equal "approved", audit_json["status"]
+    assert_equal "Looks good", audit_json["notes"]
+    assert_equal @auditor.name, audit_json["auditor"]
+    assert audit_json.key?("created_at")
+  end
+
+  test "GET /sessions/:id without auth returns 403 forbidden" do
+    session = Console1984::Session.first
+
+    ApplicationController.any_instance.stubs(:find_current_auditor).returns(nil)
+
+    get "/sessions/#{session.id}",
+      headers: { "Accept" => "application/json" }
+
+    assert_response :forbidden
+  end
+
+  test "GET /sessions/:id for non-existent session returns 404" do
+    get "/sessions/999999",
+      headers: {
+        "Accept" => "application/json",
+        "Authorization" => "Bearer #{@token_plaintext}"
+      }
+
+    assert_response :not_found
+    json = JSON.parse(response.body)
+    assert_equal "Not found", json["error"]
   end
 end
