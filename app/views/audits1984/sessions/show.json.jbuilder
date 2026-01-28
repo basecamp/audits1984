@@ -16,10 +16,6 @@ json.session do
   json.command_batches batches
 
   json.audits @session.audits do |audit|
-    json.id audit.id
-    json.status audit.status
-    json.notes audit.notes
-    json.auditor audit.auditor&.name
-    json.created_at audit.created_at.iso8601
+    json.partial! "audits1984/audits/audit", audit: audit, embedded: true
   end
 end

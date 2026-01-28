@@ -137,7 +137,7 @@ class SessionsApiTest < ActionDispatch::IntegrationTest
     assert_not_nil audit_json
     assert_equal "approved", audit_json["status"]
     assert_equal "Looks good", audit_json["notes"]
-    assert_equal @auditor.name, audit_json["auditor"]
+    assert_equal @auditor.id, audit_json["auditor_id"]
     assert audit_json.key?("created_at")
   end
 

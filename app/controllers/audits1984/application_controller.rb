@@ -18,6 +18,13 @@ module Audits1984
       end
     end
 
+    rescue_from ArgumentError do |exception|
+      respond_to do |format|
+        format.html { raise exception }
+        format.json { render json: { error: exception.message }, status: :unprocessable_entity }
+      end
+    end
+
     before_action :authenticate_auditor
 
     layout "audits1984/application"
