@@ -1,5 +1,9 @@
 name: Build
-on: [push]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    types: [ opened, synchronize ]
 
 jobs:
   rubocop:
@@ -11,20 +15,24 @@ jobs:
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.4
+          ruby-version: '4.0'
           bundler-cache: true
       - name: Run rubocop
         run: |
           bundle exec rubocop --parallel
   tests:
-    name: Tests
+    name: Ruby ${{ matrix.ruby-version }}, ${{ matrix.rails-version }}, ${{ matrix.database }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
+        ruby-version: ['3.4', '4.0']
+        rails-version: [rails_7_2, rails_8_0, rails_8_1, rails_edge]
         database: [sqlite, postgres, mysql]
+    continue-on-error: ${{ matrix.rails-version == 'rails_edge' }}
     services:
       postgres:
-        image: postgres:13.4
+        image: postgres:16
         env:
           POSTGRES_HOST_AUTH_METHOD: "trust"
         options: >-
@@ -35,7 +43,7 @@ jobs:
         ports:
           - 55433:5432
       mysql:
-        image: percona:5.7.22
+        image: mysql:8.0
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
         options: >-
@@ -46,6 +54,7 @@ jobs:
         ports:
           - 33307:3306
     env:
+      BUNDLE_GEMFILE: gemfiles/${{ matrix.rails-version }}.gemfile
       TARGET_DB: ${{ matrix.database }}
     steps:
       - name: Checkout code
@@ -53,7 +62,7 @@ jobs:
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.4
+          ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
       - name: Setup test database
         env:
