@@ -10,3 +10,4 @@
 /test/dummy/tmp/
 .byebug_history
 /.rubocop-https---raw-githubusercontent-com-rails-rails-master--rubocop-yml
+gemfiles/*.gemfile.lock

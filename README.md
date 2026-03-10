@@ -123,3 +123,29 @@ These config options are namespaced in `config.audits1984`:
 | auditor_class         | The name of the auditor class. By default it's `::User.`     |
 | auditor_name_attribute | The attribute on the auditor class that returns the auditor's name. By default it's `:name`. |
 | base_controller_class | The host application base class that will be the parent of `audit1984` controllers. By default it's `::ApplicationController`. |
+
+
+## Contributing
+
+### Testing against different Rails versions
+
+This project uses [Appraisal](https://github.com/thoughtbot/appraisal) to test against multiple Rails versions. The `Appraisals` file defines the matrix and the generated gemfiles live in `gemfiles/`.
+
+To run tests against a specific Rails version:
+
+```bash
+bundle exec appraisal rails-8-0 bin/rails test
+bundle exec appraisal rails-8-1 bin/rails test
+```
+
+To run tests against all Rails versions:
+
+```bash
+bundle exec appraisal bin/rails test
+```
+
+To regenerate the appraisal gemfiles after changing the `Appraisals` file:
+
+```bash
+bundle exec appraisal install
+```

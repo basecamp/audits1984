@@ -3,3 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Specify your gem's dependencies in audits1984.gemspec.
 gemspec
+
+gem "minitest", "< 6"
+gem "appraisal"
