@@ -86,6 +86,20 @@ Then configure audits1984 to use this controller:
 config.audits1984.base_controller_class = "Admin::AuditController"
 ```
 
+### Applications using UUID primary keys
+
+The default migration creates `auditor_id` as an integer column. If your application uses UUIDs as primary keys, you'll need to modify the generated migration after copying it into your application. Change the `auditor` reference to specify the UUID type:
+
+```ruby
+# Change this:
+t.references :auditor, null: false
+
+# To this:
+t.references :auditor, null: false, type: :uuid
+```
+
+See [#47](https://github.com/basecamp/audits1984/issues/47) for more details.
+
 ## Usage
 
 The main screen lists the registered console sessions. It includes a form to filter sessions by date, and also to only show that contains sensitive accesses.
