@@ -57,7 +57,7 @@ jobs:
     continue-on-error: ${{ matrix.rails-version == 'rails_edge' }}
     services:
       postgres:
-        image: postgres:16 # zizmor: ignore[unpinned-images] -- version tag pins to a specific release
+        image: postgres:16 # zizmor: ignore[unpinned-images] -- version tag is fine for service containers
         env:
           POSTGRES_HOST_AUTH_METHOD: "trust"
         options: >-
@@ -68,7 +68,7 @@ jobs:
         ports:
           - 55433:5432
       mysql:
-        image: mysql:8.0 # zizmor: ignore[unpinned-images] -- version tag pins to a specific release
+        image: mysql:8.0 # zizmor: ignore[unpinned-images] -- version tag is fine for service containers
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
         options: >-
