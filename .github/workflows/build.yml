@@ -5,13 +5,19 @@ on:
   pull_request:
     types: [ opened, synchronize ]
 
+permissions: {}
+
 jobs:
   rubocop:
     name: Rubocop
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@319994f95fa847cf3fb3cd3dbe89f6dcde9f178f # v1.295.0
         with:
@@ -23,6 +29,8 @@ jobs:
   tests:
     name: Ruby ${{ matrix.ruby-version }}, ${{ matrix.rails-version }}, ${{ matrix.database }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
@@ -59,6 +67,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@319994f95fa847cf3fb3cd3dbe89f6dcde9f178f # v1.295.0
         with:
