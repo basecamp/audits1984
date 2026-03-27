@@ -94,7 +94,7 @@ GEM
       thor (>= 0.14.0)
     ast (2.4.3)
     base64 (0.3.0)
-    bigdecimal (4.0.1)
+    bigdecimal (4.1.0)
     builder (3.3.0)
     capybara (3.40.0)
       addressable
@@ -164,7 +164,7 @@ GEM
       net-smtp
     marcel (1.1.0)
     matrix (0.4.3)
-    mcp (0.8.0)
+    mcp (0.9.2)
       json-schema (>= 4.1)
     mini_mime (1.1.5)
     minitest (5.27.0)
