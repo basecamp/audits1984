@@ -29,9 +29,10 @@ module Audits1984
       end
     end
 
-    config.to_prepare do
-      ActiveSupport.on_load(:active_record) do
-        Audits1984.auditor_class.constantize.has_one :auditor_token,
+    initializer "audits1984.auditor_token_association" do
+      Rails.autoloaders.main.on_load(Audits1984.auditor_class) do |klass, _abspath|
+        next if klass.reflect_on_association(:auditor_token)
+        klass.has_one :auditor_token,
           class_name: "Audits1984::AuditorToken",
           foreign_key: :auditor_id,
           dependent: :delete
