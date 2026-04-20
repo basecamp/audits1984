@@ -1,5 +1,3 @@
-require_dependency "audits1984/application_controller"
-
 module Audits1984
   class AuditsController < ApplicationController
     include FilteredSessionsScoped
