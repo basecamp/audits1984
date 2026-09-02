@@ -2,7 +2,7 @@ require "console1984"
 require "importmap-rails"
 require "jbuilder"
 require "turbo-rails"
-require "rinku"
+require "rails_autolink"
 
 module Audits1984
   class Engine < ::Rails::Engine

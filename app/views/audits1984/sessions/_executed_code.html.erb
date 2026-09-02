@@ -9,7 +9,7 @@
         <div class="media-content">
           <% if sensitive_access %>
             <p class="title is-4">Sensitive access *</p>
-            <p class="subtitle is-6"><%= Rinku.auto_link(sensitive_access.justification).html_safe %></p>
+            <p class="subtitle is-6"><%= auto_link(sensitive_access.justification).html_safe %></p>
           <% else %>
             <p class="title is-4">Protected access</p>
           <% end %>
