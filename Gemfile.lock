@@ -112,7 +112,7 @@ GEM
       parser
       rails (>= 7.0)
       rainbow
-    crass (1.0.6)
+    crass (1.0.7)
     cuprite (0.17)
       capybara (~> 3.0)
       ferrum (~> 0.17.0)
