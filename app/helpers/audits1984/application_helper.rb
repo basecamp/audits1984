@@ -40,6 +40,12 @@ module Audits1984
       formatter.format(lexer.lex(source)).html_safe
     end
 
+    # Text a console user typed, such as a session's reason or a sensitive access's
+    # justification, shown as text with its URLs linked.
+    def text_with_links(text)
+      Rinku.auto_link(h(text.to_s)).html_safe
+    end
+
     def sensitive_session_decoration(session)
       "*" if session.sensitive?
     end
