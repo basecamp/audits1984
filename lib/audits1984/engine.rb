@@ -29,11 +29,13 @@ module Audits1984
       end
     end
 
-    config.to_prepare do
-      Audits1984.auditor_class.constantize.has_one :auditor_token,
-        class_name: "Audits1984::AuditorToken",
-        foreign_key: :auditor_id,
-        dependent: :delete
+    initializer "audits1984.auditor_token", after: :load_config_initializers do
+      Rails.autoloaders.main.on_load(Audits1984.auditor_class.delete_prefix("::")) do |auditor_class|
+        auditor_class.has_one :auditor_token,
+          class_name: "Audits1984::AuditorToken",
+          foreign_key: :auditor_id,
+          dependent: :delete
+      end
     end
 
     initializer "audits1984.assets" do |app|
